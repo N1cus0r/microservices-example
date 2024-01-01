@@ -1,0 +1,25 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: product
+  datasource:
+    url: jdbc:postgresql://localhost:5432/product
+    username: nicusor
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: update
+#      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: false
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    enabled: true

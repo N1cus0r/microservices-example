@@ -1,0 +1,34 @@
+server:
+  port: 8080
+
+# In the end (docker-compose) you will expose just port
+# 8083 so the app can only be accessed through ApiGW
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: auth
+          uri: lb://AUTH
+          predicates:
+            - Path=/api/v1/auth/**
+
+        - id: product
+          uri: lb://PRODUCT
+          predicates:
+            - Path=/api/v1/products/**
+
+        - id: order
+          uri: lb://ORDER
+          predicates:
+            - Path=/api/v1/orders/**
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka
+
