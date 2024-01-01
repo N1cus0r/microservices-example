@@ -1,0 +1,123 @@
+services:
+
+  postgres:
+    container_name: postgres
+    image: postgres
+    environment:
+      POSTGRES_USER: nicusor
+      POSTGRES_PASSWORD: password
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+      - ./init-scripts:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+
+  zookeeper:
+    image: wurstmeister/zookeeper
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+    networks:
+      - kafka
+
+  kafka:
+    image: wurstmeister/kafka
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    networks:
+      - kafka
+
+  eureka-server:
+    image: nicus0r/eureka-server:latest
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - spring
+
+  apigw:
+    image: nicus0r/apigw:latest
+    container_name: apigw
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - spring
+    depends_on:
+      - eureka-server
+
+  auth:
+    image: nicus0r/auth:latest
+    container_name: auth
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - eureka-server
+      - apigw
+      - postgres
+
+  product:
+    image: nicus0r/product
+    container_name: product
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - apigw
+
+  order:
+    image: nicus0r/order
+    container_name: order
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - spring
+      - postgres
+      - kafka
+    depends_on:
+      - eureka-server
+      - apigw
+      - postgres
+      - kafka
+      - zookeeper
+
+  notification:
+    image: nicus0r/notification
+    container_name: notification
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - spring
+      - postgres
+      - kafka
+    depends_on:
+      - eureka-server
+      - kafka
+      - zookeeper
+
+networks:
+  postgres:
+    driver: bridge
+  spring:
+    driver: bridge
+  kafka:
+    driver: bridge
+
+volumes:
+  postgres:
