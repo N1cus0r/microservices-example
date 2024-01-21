@@ -1,14 +1,22 @@
 server:
   port: 8080
 
-# In the end (docker-compose) you will expose just port
-# 8083 so the app can only be accessed through ApiGW
 
 spring:
   application:
     name: api-gateway
   cloud:
     gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
       routes:
         - id: auth
           uri: lb://AUTH
