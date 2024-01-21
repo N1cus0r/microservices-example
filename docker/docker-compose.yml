@@ -79,7 +79,9 @@ services:
       - spring
       - postgres
     depends_on:
+      - eureka-server
       - apigw
+      - postgres
 
   order:
     image: nicus0r/order
@@ -108,8 +110,27 @@ services:
       - kafka
     depends_on:
       - eureka-server
+      - apigw
+      - postgres
       - kafka
       - zookeeper
+
+  client:
+    image: nicus0r/microservices-client
+    container_name: client
+    build:
+      context: ../client
+      args:
+        api_base_url: http://localhost:8080
+    ports:
+      - "3000:5173"
+    depends_on:
+      - eureka-server
+      - apigw
+      - postgres
+      - kafka
+      - zookeeper
+    restart: unless-stopped
 
 networks:
   postgres:
