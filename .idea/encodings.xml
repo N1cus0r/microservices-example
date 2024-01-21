@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/products-microservices/apigw/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/products-microservices/apigw/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/products-microservices/auth/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/products-microservices/auth/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/products-microservices/clients/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/products-microservices/clients/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/products-microservices/dataGenerator/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/products-microservices/dataGenerator/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/products-microservices/eureka-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/products-microservices/eureka-server/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/products-microservices/notification/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/products-microservices/notification/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/products-microservices/order/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/products-microservices/order/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/products-microservices/product/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/products-microservices/product/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/products-microservices/shared/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/products-microservices/shared/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/products-microservices/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/products-microservices/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

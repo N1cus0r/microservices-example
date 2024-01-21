@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="apigw" />
+        <module name="notification" />
+        <module name="shared" />
+        <module name="product" />
+        <module name="clients" />
+        <module name="auth" />
+        <module name="eureka-server" />
+        <module name="order" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="dataGenerator" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
